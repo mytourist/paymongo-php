@@ -6,9 +6,11 @@ class Payment extends BaseEntity
 {
     public function __construct($apiResource)
     {
-        $attributes = $apiResource->attributes;
+        $attributes = $apiResource['data']['attributes'];
+        //$attributes = $apiResource->attributes;
 
-        $this->id = $apiResource->id;
+        $this->id = $apiResource['data']['id'];
+        //$this->id = $apiResource->id;
         $this->amount = $attributes['amount'];
         $this->billing = is_null($attributes['billing']) ? null : new \Paymongo\Entities\Billing($attributes['billing']);
         $this->currency = $attributes['currency'];
